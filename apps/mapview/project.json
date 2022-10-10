@@ -61,7 +61,9 @@
           "browserTarget": "mapview:build:production"
         },
         "development": {
-          "browserTarget": "mapview:build:development"
+          "browserTarget": "mapview:build:development",
+          "disableHostCheck": true,
+          "host": "0.0.0.0"
         }
       },
       "defaultConfiguration": "development"

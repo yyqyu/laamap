@@ -1,1 +1,8 @@
-{}
+{
+  "settingDialog.title": "Missing value for 'settingDialog.title'",
+  "settingDialog.radar": "Missing value for 'settingDialog.radar'",
+  "settingDialog.radarDescription": "Missing value for 'settingDialog.radarDescription'",
+  "settingDialog.enable": "Missing value for 'settingDialog.enable'",
+  "settingDialog.cancel": "Missing value for 'settingDialog.cancel'",
+  "settingDialog.save": "Missing value for 'settingDialog.save'"
+}

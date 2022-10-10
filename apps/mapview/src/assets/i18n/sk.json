@@ -1,1 +1,8 @@
-{}
+{
+  "settingDialog.title": "Nastavenia",
+  "settingDialog.radar": "Radar",
+  "settingDialog.radarDescription": "Oblaky a dážď",
+  "settingDialog.enable": "Povoliť",
+  "settingDialog.cancel": "Zrušiť",
+  "settingDialog.save": "Uložiť"
+}

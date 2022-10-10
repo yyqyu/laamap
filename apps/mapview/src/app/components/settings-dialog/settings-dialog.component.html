@@ -1,0 +1,24 @@
+<ng-template transloco let-t translocoRead="settingDialog">
+  <h1 mat-dialog-title>{{ t('title') }}</h1>
+  <div mat-dialog-content>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>thunderstorm</mat-icon>{{ t('radar') }}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ t('radarDescription') }}<mat-icon>hide_source</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-slide-toggle>{{ t('enable') }}</mat-slide-toggle>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div mat-dialog-actions [align]="'end'">
+    <button mat-button [mat-dialog-close]="true">{{ t('cancel') }}</button>
+    <button mat-button [mat-dialog-close]="false" cdkFocusInitial>
+      {{ t('save') }}
+    </button>
+  </div>
+</ng-template>
