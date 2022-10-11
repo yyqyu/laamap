@@ -11,7 +11,11 @@
             {{ t('radarDescription') }}<mat-icon>hide_source</mat-icon>
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <mat-slide-toggle>{{ t('enable') }}</mat-slide-toggle>
+        <mat-slide-toggle
+          [ngModel]="radarEnabled$ | async"
+          (ngModelChange)="enableRadar($event)"
+          >{{ t('enable') }}</mat-slide-toggle
+        >
       </mat-expansion-panel>
     </mat-accordion>
   </div>
