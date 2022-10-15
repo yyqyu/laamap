@@ -1,8 +1,39 @@
 {
-  "settingDialog.title": "Nastavenia",
-  "settingDialog.radar": "Radar",
-  "settingDialog.radarDescription": "Oblaky a dážď",
-  "settingDialog.enable": "Povoliť",
-  "settingDialog.cancel": "Zrušiť",
-  "settingDialog.save": "Uložiť"
+  "settingDialog": {
+    "title": "Nastavenia",
+    "close": "Zavrieť",
+    "radar": {
+      "title": "Radar",
+      "description": "Oblaky a dážď",
+      "enable": "Povoliť",
+      "enableWidget": "Povoliť widget",
+      "disabledDesc": "Radar vypnutý",
+      "widgetDisabledDesc": "Widget radaru na mape vypnutý",
+      "snow": "Sneh",
+      "smooth": "Vyhladiť",
+      "animationSpeed": "Rýchlosť animácie",
+      "widgetBackgroundColor":"Farba pozadia",
+      "widgetCurrentColor":"Farba textu v reánom čase",
+      "widgetPastColor":"Farba textu v minulosti",
+      "widgetFutureColor":"Farba textu v budúcnosti",
+      "type": {
+        "title": "Typ",
+        "radar": "Radar",
+        "satellite": "Satelit",
+        "coverage": "Pokrytie radarom"
+      },
+      "colorScheme": {
+        "title": "Farebná schéma",
+        "0": "Bielo čierne: dBZ hodnoty",
+        "1": "Originál",
+        "2": "Univerzálna biela",
+        "3": "TITAN",
+        "4": "The Weather Channel (TWC)",
+        "5": "Meteored",
+        "6": "NEXRAD Level III",
+        "7": "Rainbow @ SELEX-IS",
+        "8": "Dark Sky"
+      }
+    }
+  }
 }

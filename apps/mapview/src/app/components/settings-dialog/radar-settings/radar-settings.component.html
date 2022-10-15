@@ -1,0 +1,115 @@
+<ng-template transloco let-t translocoRead="settingDialog.radar">
+  <mat-expansion-panel *ngrxLet="radar$ as radar">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>thunderstorm</mat-icon>{{ t('title') }}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{ t('description') }}
+        <mat-icon *ngIf="!radar.enabled" [matTooltip]="t('disabledDesc')">
+          hide_source
+        </mat-icon>
+        <mat-icon
+          *ngIf="radar.enabled && !radar.widget.enabled"
+          [matTooltip]="t('widgetDisabledDesc')"
+        >
+          speaker_notes_off
+        </mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-slide-toggle
+      [ngModel]="radar.enabled"
+      (ngModelChange)="enableRadar($event)"
+      >{{ t('enable') }}
+    </mat-slide-toggle>
+    <div class="settings" *ngIf="radar.enabled">
+      <mat-form-field>
+        <mat-label>{{ t('type.title') }}</mat-label>
+        <mat-select [value]="radar.type" (valueChange)="typeChanged($event)">
+          <mat-option *ngFor="let type of types" [value]="type">
+            {{ t('type.' + type) }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{ t('colorScheme.title') }}</mat-label>
+        <mat-select
+          [value]="radar.colorScheme"
+          (valueChange)="colorSchemeChanged($event)"
+        >
+          <mat-option *ngFor="let scheme of colorScheme" [value]="scheme">
+            {{ t('colorScheme.' + scheme) }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-slide-toggle
+        [ngModel]="radar.snow"
+        (ngModelChange)="enableSnow($event)"
+        >{{ t('snow') }}
+      </mat-slide-toggle>
+      <mat-slide-toggle
+        [ngModel]="radar.smooth"
+        (ngModelChange)="enableSmooth($event)"
+        >{{ t('smooth') }}
+      </mat-slide-toggle>
+      <div
+        class="animationSpeed mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-should-float"
+      >
+        <span class="mat-form-field-label">
+          {{ t('animationSpeed') }}
+        </span>
+        <mat-slider
+          [min]="0"
+          [max]="100"
+          [value]="radar.animationSpeed"
+          (valueChange)="animationSpeedChanged($event)"
+        ></mat-slider>
+      </div>
+    </div>
+    <mat-card class="widgetSettings" *ngIf="radar.enabled">
+      <mat-slide-toggle
+        [ngModel]="radar.widget.enabled"
+        (ngModelChange)="enableWidget($event)"
+        >{{ t('enableWidget') }}
+      </mat-slide-toggle>
+      <div class="settings" *ngIf="radar.widget.enabled">
+        <mat-form-field>
+          <mat-label>{{ t('widgetBackgroundColor') }}</mat-label>
+          <input
+            matInput
+            type="color"
+            [ngModel]="radar.widget.background"
+            (ngModelChange)="widgetBgColorChanged($event)"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{ t('widgetCurrentColor') }}</mat-label>
+          <input
+            matInput
+            type="color"
+            [ngModel]="radar.widget.textColorCurrent"
+            (ngModelChange)="widgetTextColorCurrentChanged($event)"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{ t('widgetPastColor') }}</mat-label>
+          <input
+            matInput
+            type="color"
+            [ngModel]="radar.widget.textColorPast"
+            (ngModelChange)="widgetTextColorPastChanged($event)"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>{{ t('widgetFutureColor') }}</mat-label>
+          <input
+            matInput
+            type="color"
+            [ngModel]="radar.widget.textColorFuture"
+            (ngModelChange)="widgetTextColorFutureChanged($event)"
+          />
+        </mat-form-field>
+      </div>
+    </mat-card>
+  </mat-expansion-panel>
+</ng-template>
