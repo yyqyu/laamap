@@ -26,6 +26,7 @@ import { metaReducers } from './store/metareducers/hydratation';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LetModule, PushModule } from '@ngrx/component';
 import { RadarSettingsComponent } from './components/settings-dialog/radar-settings/radar-settings.component';
+import { OnMapRadarComponent } from './components/map/on-map-radar/on-map-radar.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { RadarSettingsComponent } from './components/settings-dialog/radar-setti
     MapComponent,
     SettingsDialogComponent,
     RadarSettingsComponent,
+    OnMapRadarComponent,
   ],
   imports: [
     BrowserModule,

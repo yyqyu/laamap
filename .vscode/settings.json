@@ -5,5 +5,8 @@
         "maplibre",
         "maplibregl",
         "transloco"
+    ],
+    "conventionalCommits.scopes": [
+        "radar"
     ]
 }

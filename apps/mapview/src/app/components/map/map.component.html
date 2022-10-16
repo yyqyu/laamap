@@ -4,16 +4,13 @@
   "
   [zoom]="[7]"
   [center]="[19.471558112191815, 48.704923970323705]"
-  (mapClick)="click($event)"
   [attributionControl]="false"
 >
   <!-- right top -->
   <mgl-control>
     <div class="maplibregl-ctrl-group">
-      <button (click)="openDialog()">
-        <mat-icon
-          fontIcon="settings"
-        ></mat-icon>
+      <button (click)="openSettingsDialog()">
+        <mat-icon fontIcon="settings"></mat-icon>
       </button>
     </div>
   </mgl-control>
@@ -30,7 +27,6 @@
   ></mgl-control>
   <mgl-control mglNavigation></mgl-control>
 
-
   <!-- bottom controls -->
   <mgl-control
     mglAttribution
@@ -40,36 +36,5 @@
     ]"
   ></mgl-control>
   <mgl-control mglScale unit="metric" position="bottom-right"></mgl-control>
-  <!-- rain viewer -->
-  <ng-container
-    *ngFor="
-      let url of rainViewerTileUrl$ | async;
-      let i = index;
-      trackBy: radarTileIdentify
-    "
-  >
-    <mgl-raster-source
-      [id]="'rainViewSource' + i"
-      [tileSize]="256"
-      [tiles]="[url]"
-    ></mgl-raster-source>
-    <mgl-layer
-      [id]="'rainViewLayer' + i"
-      type="raster"
-      [source]="'rainViewSource' + i"
-      [layout]="{
-        visibility:
-          ((interval$ | async) ?? 0) %
-            ((rainViewerTileUrl$ | async)?.length ?? 0) ===
-          i
-            ? 'visible'
-            : 'none'
-      }"
-      [paint]="{
-        'raster-opacity': 0.75,
-        'raster-fade-duration': 0
-      }"
-    >
-    </mgl-layer>
-  </ng-container>
+  <laamap-on-map-radar></laamap-on-map-radar>
 </mgl-map>
