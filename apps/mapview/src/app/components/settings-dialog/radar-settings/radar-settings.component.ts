@@ -72,4 +72,10 @@ export class RadarSettingsComponent {
       RadarSettingsActions.widgetTextColorPastChanged({ color })
     );
   }
+
+  opacityChanged(opacity: number | null): void {
+    this.store.dispatch(
+      RadarSettingsActions.opacityChanged({ opacity: opacity ?? 0 })
+    );
+  }
 }

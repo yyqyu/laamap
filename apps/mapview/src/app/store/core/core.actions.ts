@@ -11,6 +11,7 @@ export const RadarSettingsActions = createActionGroup({
     'Enabled snow changed': props<{ enabled: boolean }>(),
     'Enabled smooth changed': props<{ enabled: boolean }>(),
     'Animation speed': props<{ animationSpeed: number }>(),
+    'Opacity changed': props<{ opacity: number }>(),
     'Widget bg color changed': props<{ color: string }>(),
     'Widget text color current changed': props<{ color: string }>(),
     'Widget text color past changed': props<{ color: string }>(),

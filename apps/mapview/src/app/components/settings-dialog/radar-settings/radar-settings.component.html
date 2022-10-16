@@ -53,7 +53,7 @@
         >{{ t('smooth') }}
       </mat-slide-toggle>
       <div
-        class="animationSpeed mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-should-float"
+        class="labeledSlider mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-should-float"
       >
         <span class="mat-form-field-label">
           {{ t('animationSpeed') }}
@@ -63,6 +63,19 @@
           [max]="100"
           [value]="radar.animationSpeed"
           (valueChange)="animationSpeedChanged($event)"
+        ></mat-slider>
+      </div>
+      <div
+        class="labeledSlider mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-should-float"
+      >
+        <span class="mat-form-field-label">
+          {{ t('opacity') }}
+        </span>
+        <mat-slider
+          [min]="0"
+          [max]="100"
+          [value]="radar.opacity"
+          (valueChange)="opacityChanged($event)"
         ></mat-slider>
       </div>
     </div>

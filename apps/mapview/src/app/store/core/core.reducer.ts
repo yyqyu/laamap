@@ -9,6 +9,7 @@ const initialState = {
     snow: false,
     smooth: true,
     animationSpeed: 30,
+    opacity: 75,
     widget: {
       enabled: false,
       position: {
@@ -74,6 +75,13 @@ export const coreReducer = createReducer(
     (state, { animationSpeed }): AppState['core'] => ({
       ...state,
       radar: { ...state.radar, animationSpeed },
+    })
+  ),
+  on(
+    RadarSettingsActions.opacityChanged,
+    (state, { opacity }): AppState['core'] => ({
+      ...state,
+      radar: { ...state.radar, opacity },
     })
   ),
   on(
