@@ -2,10 +2,13 @@
   <ng-container *ngrxLet="radar$ as radar">
     <div
       class="container"
+      cdkDrag
+      (cdkDragEnded)="dragEnded(radar.widget.position, $event)"
+      cdkDragBoundary="body"
+      [cdkDragFreeDragPosition]="radar.widget.position"
+      [cdkDragStartDelay]="1000"
       *ngIf="radar.type !== 'coverage' && radar.widget.enabled"
       [style.background]="radar.widget.background"
-      [style.top.%]="radar.widget.position.x"
-      [style.left.%]="radar.widget.position.y"
     >
       <h6>{{ t('settingDialog.radar.type.' + radar.type) }}</h6>
       <span

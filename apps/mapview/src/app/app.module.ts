@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapComponent } from './components/map/map.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -60,6 +61,7 @@ import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
     MatDialogModule,
     MatFormFieldModule,
     MatButtonModule,
+    DragDropModule,
     MatExpansionModule,
     MatInputModule,
     MatSlideToggleModule,

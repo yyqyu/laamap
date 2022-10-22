@@ -1,6 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import { IRainViewerUrls } from '../../services/rain-viewer.interface';
-import { RadarSettingsActions } from './core.actions';
+import {
+  RadarSettingsActions,
+  rainViewersWidgetSettings,
+} from './core.actions';
 import * as coreActions from './core.actions';
 
 const initialState = {
@@ -123,6 +126,19 @@ export const coreReducer = createReducer(
       radar: {
         ...state.radar,
         urls: data,
+      },
+    })
+  ),
+  on(
+    rainViewersWidgetSettings.moved,
+    (state, { position }): AppState['core'] => ({
+      ...state,
+      radar: {
+        ...state.radar,
+        widget: {
+          ...state.radar.widget,
+          position,
+        },
       },
     })
   )

@@ -1,7 +1,9 @@
+import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { distinctUntilChanged, iif, map, switchMap, tap } from 'rxjs';
 import { RainViewerService } from '../../../services/rain-viewer.service';
+import { rainViewersWidgetSettings } from '../../../store/core/core.actions';
 import { selectRadar } from '../../../store/core/core.selectors';
 import {
   selectRadarWithAnimation,
@@ -41,4 +43,18 @@ export class RadarWidgetComponent {
     private readonly store: Store,
     private readonly rainViewer: RainViewerService
   ) {}
+
+  dragEnded(
+    originalPosition: { x: number; y: number },
+    event: CdkDragEnd
+  ): void {
+    this.store.dispatch(
+      rainViewersWidgetSettings.moved({
+        position: {
+          x: originalPosition.x + event.distance.x,
+          y: originalPosition.y + event.distance.y,
+        },
+      })
+    );
+  }
 }

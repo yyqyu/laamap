@@ -1,9 +1,4 @@
-import {
-  createAction,
-  createActionGroup,
-  emptyProps,
-  props,
-} from '@ngrx/store';
+import { createAction, createActionGroup, props } from '@ngrx/store';
 import { IRainViewerUrls } from '../../services/rain-viewer.interface';
 import { AppState } from './core.reducer';
 
@@ -28,3 +23,8 @@ export const rainViewersUrlsLoaded = createAction(
   '[core effect] Rain viewer URLs loaded',
   props<{ data: IRainViewerUrls }>()
 );
+
+export const rainViewersWidgetSettings = createActionGroup({
+  source: 'Radar widget',
+  events: { Moved: props<{ position: { x: number; y: number } }>() },
+});
