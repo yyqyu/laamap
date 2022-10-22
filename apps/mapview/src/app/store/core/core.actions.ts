@@ -19,7 +19,6 @@ export const RadarSettingsActions = createActionGroup({
     'Animation speed': props<{ animationSpeed: number }>(),
     'Opacity changed': props<{ opacity: number }>(),
     'Widget bg color changed': props<{ color: string }>(),
-    'Widget text color current changed': props<{ color: string }>(),
     'Widget text color past changed': props<{ color: string }>(),
     'Widget text color future changed': props<{ color: string }>(),
   },

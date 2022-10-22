@@ -55,12 +55,6 @@ export class RadarSettingsComponent {
     this.store.dispatch(RadarSettingsActions.widgetBgColorChanged({ color }));
   }
 
-  widgetTextColorCurrentChanged(color: string): void {
-    this.store.dispatch(
-      RadarSettingsActions.widgetTextColorCurrentChanged({ color })
-    );
-  }
-
   widgetTextColorFutureChanged(color: string): void {
     this.store.dispatch(
       RadarSettingsActions.widgetTextColorFutureChanged({ color })

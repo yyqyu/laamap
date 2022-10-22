@@ -19,7 +19,6 @@ const initialState = {
         y: 0,
       },
       background: '#ffffff',
-      textColorCurrent: '#000000',
       textColorPast: '#707070',
       textColorFuture: '#005706',
     },
@@ -104,16 +103,6 @@ export const coreReducer = createReducer(
       radar: {
         ...state.radar,
         widget: { ...state.radar.widget, textColorPast: color },
-      },
-    })
-  ),
-  on(
-    RadarSettingsActions.widgetTextColorCurrentChanged,
-    (state, { color }): AppState['core'] => ({
-      ...state,
-      radar: {
-        ...state.radar,
-        widget: { ...state.radar.widget, textColorCurrent: color },
       },
     })
   ),
