@@ -27,6 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LetModule, PushModule } from '@ngrx/component';
 import { RadarSettingsComponent } from './components/settings-dialog/radar-settings/radar-settings.component';
 import { OnMapRadarComponent } from './components/map/on-map-radar/on-map-radar.component';
+import { CoreEffects } from './store/core/core.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,7 @@ import { OnMapRadarComponent } from './components/map/on-map-radar/on-map-radar.
         metaReducers,
       }
     ),
+    EffectsModule.forRoot([CoreEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

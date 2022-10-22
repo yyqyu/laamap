@@ -31,7 +31,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field *ngIf="radar.type === 'radar'">
         <mat-label>{{ t('colorScheme.title') }}</mat-label>
         <mat-select
           [value]="radar.colorScheme"
@@ -43,16 +43,19 @@
         </mat-select>
       </mat-form-field>
       <mat-slide-toggle
+        *ngIf="radar.type === 'radar'"
         [ngModel]="radar.snow"
         (ngModelChange)="enableSnow($event)"
         >{{ t('snow') }}
       </mat-slide-toggle>
       <mat-slide-toggle
+        *ngIf="radar.type !== 'coverage'"
         [ngModel]="radar.smooth"
         (ngModelChange)="enableSmooth($event)"
         >{{ t('smooth') }}
       </mat-slide-toggle>
       <div
+        *ngIf="radar.type !== 'coverage'"
         class="labeledSlider mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-should-float"
       >
         <span class="mat-form-field-label">
@@ -66,6 +69,7 @@
         ></mat-slider>
       </div>
       <div
+        *ngIf="radar.type !== 'coverage'"
         class="labeledSlider mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-should-float"
       >
         <span class="mat-form-field-label">
@@ -79,7 +83,10 @@
         ></mat-slider>
       </div>
     </div>
-    <mat-card class="widgetSettings" *ngIf="radar.enabled">
+    <mat-card
+      class="widgetSettings"
+      *ngIf="radar.enabled && radar.type !== 'coverage'"
+    >
       <mat-slide-toggle
         [ngModel]="radar.widget.enabled"
         (ngModelChange)="enableWidget($event)"

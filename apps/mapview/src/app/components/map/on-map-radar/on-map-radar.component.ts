@@ -1,47 +1,39 @@
-import { Component } from '@angular/core';
-import { interval, map, switchMap } from 'rxjs';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { iif, switchMap } from 'rxjs';
 import { RainViewerService } from '../../../services/rain-viewer.service';
+import { selectRadar } from '../../../store/core/core.selectors';
+import {
+  selectRadarUrlsTypeCoverage,
+  selectRadarWithAnimation,
+  selectSatelliteWithAnimation,
+} from '../../../store/core/rain-viewer.selectors';
 
 @Component({
   selector: 'laamap-on-map-radar',
   templateUrl: './on-map-radar.component.html',
   styleUrls: ['./on-map-radar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OnMapRadarComponent {
-  rainViewerTileUrl$ = this.rainViewer.getDef$().pipe(
-    switchMap((urls) =>
-      interval(1000).pipe(
-        map((interval) =>
-          urls.map((url, index) => ({
-            url,
-            visible:
-              index === interval % urls.length ||
-              index - 1 === interval % urls.length,
-            fadeOut: index === interval % urls.length,
-          }))
-        )
-      )
-    ),
-    switchMap((value) =>
-      interval(50).pipe(
-        map((animationInterval) =>
-          value.map((layer) => ({
-            url: layer.url,
-            opacity: !layer.visible
-              ? 0
-              : layer.fadeOut
-              ? Math.max(
-                  ((10 - (animationInterval ?? 0)) / 10) * 0.75 * 0.75,
-                  0
-                )
-              : 1,
-          }))
+  radar$ = this.store.select(selectRadar);
+  rainViewerTileUrl$ = this.store.select(selectRadar).pipe(
+    switchMap((radar) =>
+      iif(
+        () => radar.type === 'radar',
+        this.store.pipe(selectRadarWithAnimation(this.rainViewer.tileSize)),
+        iif(
+          () => radar.type === 'satellite',
+          this.store.pipe(
+            selectSatelliteWithAnimation(this.rainViewer.tileSize)
+          ),
+          this.store.select(selectRadarUrlsTypeCoverage)
         )
       )
     )
   );
 
-  constructor(private rainViewer: RainViewerService) {}
+  constructor(public rainViewer: RainViewerService, private store: Store) {}
 
   radarTileIdentify(
     index: number,

@@ -1,5 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
+import { IRainViewerUrls } from '../../services/rain-viewer.interface';
 import { RadarSettingsActions } from './core.actions';
+import * as coreActions from './core.actions';
 
 const initialState = {
   radar: {
@@ -21,6 +23,7 @@ const initialState = {
       textColorPast: '#707070',
       textColorFuture: '#005706',
     },
+    urls: null as IRainViewerUrls | null,
   },
 };
 
@@ -121,6 +124,16 @@ export const coreReducer = createReducer(
       radar: {
         ...state.radar,
         widget: { ...state.radar.widget, textColorFuture: color },
+      },
+    })
+  ),
+  on(
+    coreActions.rainViewersUrlsLoaded,
+    (state, { data }): AppState['core'] => ({
+      ...state,
+      radar: {
+        ...state.radar,
+        urls: data,
       },
     })
   )
