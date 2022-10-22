@@ -25,6 +25,7 @@
     "@angular/router": "~14.2.0",
     "@maplibre/ngx-maplibre-gl": "^13.0.0",
     "@ngneat/transloco": "^4.1.1",
+    "@ngneat/transloco-locale": "^4.0.0",
     "@ngneat/until-destroy": "^9.2.2",
     "@ngrx/component": "^14.3.2",
     "@ngrx/effects": "^14.3.2",

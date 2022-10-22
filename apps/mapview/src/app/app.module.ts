@@ -29,6 +29,8 @@ import { RadarSettingsComponent } from './components/settings-dialog/radar-setti
 import { OnMapRadarComponent } from './components/map/on-map-radar/on-map-radar.component';
 import { CoreEffects } from './store/core/core.effects';
 import { EffectsModule } from '@ngrx/effects';
+import { RadarWidgetComponent } from './components/widgets/radar-widget/radar-widget.component';
+import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { EffectsModule } from '@ngrx/effects';
     SettingsDialogComponent,
     RadarSettingsComponent,
     OnMapRadarComponent,
+    RadarWidgetComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,12 @@ import { EffectsModule } from '@ngrx/effects';
     NgxMapLibreGLModule,
     HttpClientModule,
     TranslocoRootModule,
+    TranslocoLocaleModule.forRoot({
+      langToLocaleMapping: {
+        en: 'en-US',
+        sk: 'sk-SK',
+      },
+    }),
     BrowserAnimationsModule,
     MatCardModule,
     MatIconModule,

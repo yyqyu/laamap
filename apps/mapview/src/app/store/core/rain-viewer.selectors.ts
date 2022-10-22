@@ -17,7 +17,7 @@ export const selectRadarUrlsTypeRadar = (tileSize: number) =>
         []),
       ...(radar.urls?.radar.nowcast.map((item) => ({
         ...item,
-        past: true,
+        past: false,
       })) ?? []),
     ].map((item) => ({
       ...(item as Omit<typeof item, 'path'>),
@@ -65,8 +65,8 @@ export const selectRadarWithAnimation = (tileSize: number) => {
             ...item,
             visible:
               index === interval % items.length ||
-              index - 1 === interval % items.length,
-            fadeOut: index === interval % items.length,
+              index === (interval - 1) % items.length,
+            active: index === interval % items.length,
           }))
         ),
         switchMap((items) =>
@@ -76,16 +76,17 @@ export const selectRadarWithAnimation = (tileSize: number) => {
                 url: layer.url,
                 time: layer.time,
                 past: layer.past,
+                active: layer.active,
                 opacity: !layer.visible
                   ? 0
-                  : layer.fadeOut
-                  ? Math.max(
+                  : layer.active
+                  ? radar.opacity / 100
+                  : Math.max(
                       ((10 - (animationInterval ?? 0)) / 10) *
                         radar.opacity *
                         0.0075,
                       0
-                    )
-                  : radar.opacity / 100,
+                    ),
               }))
             )
           )
@@ -111,6 +112,7 @@ export const selectSatelliteWithAnimation = (tileSize: number) => {
             ...item,
             opacity:
               index === interval % items.length ? radar.opacity / 100 : 0,
+            active: index === interval % items.length,
           }))
         )
       )

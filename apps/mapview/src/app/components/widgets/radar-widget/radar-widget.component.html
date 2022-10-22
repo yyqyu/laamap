@@ -1,0 +1,23 @@
+<ng-template transloco let-t>
+  <ng-container *ngrxLet="radar$ as radar">
+    <div
+      class="container"
+      *ngIf="radar.type !== 'coverage' && radar.widget.enabled"
+      [style.background]="radar.widget.background"
+      [style.top.%]="radar.widget.position.x"
+      [style.left.%]="radar.widget.position.y"
+    >
+      <h6>{{ t('settingDialog.radar.type.' + radar.type) }}</h6>
+      <span
+        class="value"
+        *ngIf="activeTileTime$ | ngrxPush as activeTileTime"
+        [style.color]="
+          (activeTilePast$ | async)
+            ? radar.widget.textColorPast
+            : radar.widget.textColorFuture
+        "
+        >{{ activeTileTime | translocoDate: { timeStyle: 'short' } }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>
