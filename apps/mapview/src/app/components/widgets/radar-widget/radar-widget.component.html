@@ -7,7 +7,7 @@
       cdkDragBoundary="body"
       [cdkDragFreeDragPosition]="radar.widget.position"
       [cdkDragStartDelay]="1000"
-      *ngIf="radar.type !== 'coverage' && radar.widget.enabled"
+      *ngIf="radar.type !== 'coverage' && radar.widget.enabled && radar.enabled"
       [style.background]="radar.widget.background"
     >
       <h6>{{ t('settingDialog.radar.type.' + radar.type) }}</h6>
