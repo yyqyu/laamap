@@ -7,28 +7,13 @@ mapa2: https://opentopomap.org/
 https://leaflet-extras.github.io/leaflet-providers/preview/
 
 ### steps
-- install store
 - install linters
-- create settings dialog
-- create widget - small functionality above map
-- setting dialog will have expansion panels - one for radar
-  - show radar on map
-  - animation speed
-  - input for choosing from/to time values
-  - dropdown for radar/satelitte/coverage
-  - dropdowncolor scheme
-  - multi drop down for options - snow, smooth
-- radar widget
-  - slider with current radar time and time string - can be moved
-  - colors for time string to show past/current/future
-  - turn on/off radar
 - translate map (https://maplibre.org/ngx-maplibre-gl/demo/cluster-html)
 
 ### todos
-- radar cez nastavenia
 - notam na bode
 - mapa offline, https://tilemaker.org/
-- mapa rotate
+- mapa rotate pri pohybe
 - mapa zoom podla rychlosti
 - mapa udrzuj pohyb
 - mapa ikona lietadla v gps suradniciach

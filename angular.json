@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "mapview": "apps/mapview",
-    "mapview-e2e": "apps/mapview-e2e"
+    "mapview-e2e": "apps/mapview-e2e",
+    "open-aip-downloader": "apps/open-aip-downloader"
   }
 }
