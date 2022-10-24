@@ -46,6 +46,7 @@
     "@angular/cli": "~14.2.0",
     "@angular/compiler-cli": "~14.2.0",
     "@angular/language-service": "~14.2.0",
+    "@google-cloud/storage": "^6.5.4",
     "@ngneat/transloco-keys-manager": "^3.4.2",
     "@ngrx/eslint-plugin": "^14.3.2",
     "@nrwl/cli": "14.7.17",
