@@ -32,6 +32,7 @@ import { CoreEffects } from './store/core/core.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { RadarWidgetComponent } from './components/widgets/radar-widget/radar-widget.component';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
+import { OnMapAirportComponent } from './components/map/on-map-airport/on-map-airport.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
     RadarSettingsComponent,
     OnMapRadarComponent,
     RadarWidgetComponent,
+    OnMapAirportComponent,
   ],
   imports: [
     BrowserModule,

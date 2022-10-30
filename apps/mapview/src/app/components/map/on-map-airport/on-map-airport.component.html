@@ -1,0 +1,99 @@
+<mgl-geojson-source
+  id="airportSource"
+  [data]="airPorts$ | ngrxPush"
+></mgl-geojson-source>
+
+<mgl-layer
+  *ngIf="imageLoaded"
+  id="airportOrientationLayer"
+  type="symbol"
+  source="airportSource"
+  [filter]="[
+    'all',
+    [
+      'in',
+      ['get', 'type'],
+      [
+        'literal',
+        [
+          EAirportType.AIRPORT,
+          EAirportType.AIRFIELD_CIVIL,
+          EAirportType.INTERNATIONAL_AIRPORT,
+          EAirportType.MILITARY_AERODROME,
+          EAirportType.ULTRA_LIGHT_FLYING_SITE,
+          EAirportType.IFR,
+          EAirportType.LANDING_STRIP,
+          EAirportType.AGRICULTURAL_LANDING_STRIP,
+          EAirportType.ALTIPORT
+        ]
+      ]
+    ],
+    zoomLevelBasedFilter
+  ]"
+  [layout]="{
+    'icon-image': [
+      'case',
+      ['get', 'paved', ['get', 'mainRunway']],
+      'runway-paved',
+      'runway-unpaved'
+    ],
+    'icon-size': 1,
+    'icon-allow-overlap': true,
+    'icon-rotate': ['get', 'trueHeading', ['get', 'mainRunway']]
+  }"
+></mgl-layer>
+
+<mgl-layer
+  *ngIf="imageLoaded"
+  id="airportTypeLayer"
+  type="symbol"
+  source="airportSource"
+  (layerClick)="airportClicked($event.features?.[0]?.properties)"
+  (layerMouseEnter)="hover()"
+  (layerMouseLeave)="hoverEnd()"
+  [filter]="zoomLevelBasedFilter"
+  [layout]="{
+    'icon-image': [
+      'match',
+      ['number', ['get', 'type']],
+      EAirportType.INTERNATIONAL_AIRPORT,
+      'INTERNATIONAL_AIRPORT',
+      EAirportType.ULTRA_LIGHT_FLYING_SITE,
+      'ULTRA_LIGHT_FLYING_SITE',
+      EAirportType.AIRFIELD_CIVIL,
+      'AIRFIELD_CIVIL',
+      EAirportType.MILITARY_AERODROME,
+      'MILITARY_AERODROME',
+      EAirportType.AERODROME_CLOSED,
+      'AERODROME_CLOSED',
+      EAirportType.HELIPORT_CIVIL,
+      'HELIPORT_CIVIL',
+      'AIRFIELD_CIVIL'
+    ],
+    'icon-size': 1,
+    'icon-allow-overlap': true,
+    'text-field': [
+      'step',
+      ['zoom'],
+      '',
+      9,
+      ['get', 'name'],
+      11,
+      [
+        'concat',
+        ['get', 'name'],
+        '\n',
+        [
+          'case',
+          ['has', 'value', ['get', 'mainFrequency']],
+          ['concat', ['get', 'value', ['get', 'mainFrequency']], 'MHz'],
+          ''
+        ]
+      ]
+    ],
+    'text-optional': true,
+    'text-anchor': 'bottom',
+    'text-offset': [0, -1.2],
+    'text-size': 12
+  }"
+></mgl-layer>
