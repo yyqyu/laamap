@@ -267,7 +267,7 @@ type ECountries =
   | 'SS'
   | 'XK';
 
-enum EHeightUnit {
+export enum EHeightUnit {
   METERS = 0,
 }
 
@@ -279,7 +279,7 @@ enum EWeightUnit {
   TON = 9,
 }
 
-enum EReferenceDatum {
+export enum EReferenceDatum {
   MSL = 1,
 }
 
@@ -475,7 +475,7 @@ export interface IAirportResponse {
     hae: number; // Height above ellipsoid in meters.
     geoidHeight: number; // Height of geoid in meters.
   };
-  trafficType: ETrafficType;
+  trafficType: ETrafficType[];
   magneticDeclination: number;
   ppr: boolean;
   private: boolean;

@@ -1,0 +1,41 @@
+.info {
+  .label {
+    display: block;
+    color: grey;
+    font-size: 0.8rem;
+    &::after {
+      content: ': ';
+    }
+  }
+
+  .value {
+    margin-left: 0.5rem;
+    .splitList {
+      &:not(:first-child) {
+        &::before {
+          content: ', ';
+        }
+      }
+    }
+  }
+}
+
+mat-accordion {
+  display: block;
+  margin: 1rem 0;
+}
+
+.highlight {
+  font-weight: 500;
+}
+
+@media screen and (min-width: 500px) {
+  .info {
+    .label {
+      display: inline;
+    }
+    .value {
+      margin-left: 0;
+    }
+  }
+}

@@ -4,6 +4,7 @@ import {
   Component,
   Host,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MapComponent } from '@maplibre/ngx-maplibre-gl';
 import { ExpressionFilterSpecification } from 'maplibre-gl';
 import { forkJoin, fromEvent, map, Observable, take, tap } from 'rxjs';
@@ -12,6 +13,7 @@ import {
   IAirportResponse,
 } from '../../../services/open-aip/airport';
 import { OpenAipService } from '../../../services/open-aip/open-aip.service';
+import { AirportDialogComponent } from '../../airport-dialog/airport-dialog.component';
 
 @Component({
   selector: 'laamap-on-map-airport',
@@ -27,6 +29,7 @@ export class OnMapAirportComponent {
   constructor(
     private readonly cdr: ChangeDetectorRef,
     private readonly openApi: OpenAipService,
+    private readonly dialog: MatDialog,
     @Host() private readonly map: MapComponent
   ) {
     this.loadAirportImages();
@@ -45,7 +48,11 @@ export class OnMapAirportComponent {
       const airPort = this.decodeGeoJsonProperties(
         airPortDef
       ) as IAirportResponse;
-      console.log(airPort);
+
+      this.dialog.open(AirportDialogComponent, {
+        width: '100%',
+        data: airPort,
+      });
     }
   }
 

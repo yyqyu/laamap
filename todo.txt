@@ -11,6 +11,8 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 - translate map (https://maplibre.org/ngx-maplibre-gl/demo/cluster-html)
 
 ### todos
+- letiska - nastavenie podla typu, vyhladavanie podla icao/mena
+- vlastne body zaujmu, vyhladavanie podla mena
 - notam na bode
 - mapa offline, https://tilemaker.org/
 - mapa rotate pri pohybe
@@ -30,3 +32,4 @@ https://leaflet-extras.github.io/leaflet-providers/preview/
 - moznost zobrazit zaznam trasy a filter casu, vzdialenosti podla rychlosti => ked idem viac ako 50km zobrat cas letu a dlzku letu
 - https://github.com/shipshapecode/angular-shepherd
 - https://logrocket.com/featuress
+- notebook, notebook with templates, multiple sheets

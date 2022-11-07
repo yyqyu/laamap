@@ -33,6 +33,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { RadarWidgetComponent } from './components/widgets/radar-widget/radar-widget.component';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import { OnMapAirportComponent } from './components/map/on-map-airport/on-map-airport.component';
+import { AirportDialogComponent } from './components/airport-dialog/airport-dialog.component';
+import { TranslocoMessageFormatModule } from '@ngneat/transloco-messageformat';
+import { AltitudePipe } from './shared/altitude/altitude.pipe';
+import { LightgalleryModule } from 'lightgallery/angular';
+import { DimensionPipe } from './shared/dimension/dimension.pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +48,9 @@ import { OnMapAirportComponent } from './components/map/on-map-airport/on-map-ai
     OnMapRadarComponent,
     RadarWidgetComponent,
     OnMapAirportComponent,
+    AirportDialogComponent,
+    AltitudePipe,
+    DimensionPipe,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +65,7 @@ import { OnMapAirportComponent } from './components/map/on-map-airport/on-map-ai
         sk: 'sk-SK',
       },
     }),
+    TranslocoMessageFormatModule.forRoot({ locales: ['en-US', 'sk-SK'] }),
     BrowserAnimationsModule,
     MatCardModule,
     MatIconModule,
@@ -91,6 +100,7 @@ import { OnMapAirportComponent } from './components/map/on-map-airport/on-map-ai
       maxAge: 25,
       logOnly: environment.production,
     }),
+    LightgalleryModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

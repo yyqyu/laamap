@@ -35,5 +35,95 @@
         "8": "Dark Sky"
       }
     }
+  },
+  "airportDialog": {
+    "close": "Zavrieť",
+    "title": "Letisko {name} {icaoCode, select, undefined {} other {({icaoCode})}}",
+    "type": "Typ letiska",
+    "elevation": "Poloha",
+    "magneticDeclination": "Magnetická deklinácia",
+    "private": "Súkomné",
+    "skydiveActivity": "Zoskok padákom",
+    "images": "Obrázky",
+    "types": {
+      "0": "Letisko",
+      "1": "Letisko pre klzáky",
+      "2": "Civilné letisko",
+      "3": "Medzinárodné letisko",
+      "4": "Armádny heliport",
+      "5": "Armádne letisko",
+      "6": "Letisko pre ultralight",
+      "7": "Civilný heliport",
+      "8": "Zatvorené letisko",
+      "9": "IFR letisko",
+      "10": "Pristávacia plocha na vode",
+      "11": "Pristávací pás",
+      "12": "Agrokultúrne letisko",
+      "13": "Vysokohorské letisko"
+    },
+    "trafficTypes": {
+      "0": "VFR",
+      "1": "IFR"
+    },
+    "boolean": {
+      "false": "Nie",
+      "true": "Ano"
+    },
+    "runways": "Dráhy",
+    "runwaysDetail": {
+      "length": "Dĺžka",
+      "width": "Šírka",
+      "operation": "Stav",
+      "remarks": "Poznámky",
+      "trueHeading": "Orientácia",
+      "turnDirection": "Okruhy",
+      "operations": {
+        "0": "Aktína",
+        "1": "Dočasne zatvorená",
+        "2": "Zatvorená"
+      },
+      "turnDirections": {
+        "0": "Pravé",
+        "1": "Lavé",
+        "2": "Pravé a Lavé"
+      }
+    },
+    "frequency": "Frekvencia",
+    "frequencies": {
+      "types": {
+        "0": "APPROACH",
+        "1": "APRON",
+        "2": "ARRIVAL",
+        "3": "CENTER",
+        "4": "CTAF",
+        "5": "DELIVERY",
+        "6": "DEPARTURE",
+        "7": "FIS",
+        "8": "GLIDING",
+        "9": "GROUND",
+        "10": "INFO",
+        "11": "MULTICOM",
+        "12": "UNICOM",
+        "13": "RADAR",
+        "14": "TOWER",
+        "15": "ATIS",
+        "16": "RADIO",
+        "17": "OTHER",
+        "18": "AIRMET",
+        "19": "AWOS",
+        "20": "LIGHTS",
+        "21": "VOLMET"
+      }
+    }
+  },
+  "shared": {
+    "altitude": {
+      "heighUnit": {
+        "0": "m"
+      },
+      "referenceDatum": {
+        "1": "n.m."
+      }
+    }
   }
 }
