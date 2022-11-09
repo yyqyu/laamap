@@ -26,8 +26,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "1.5mb",
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",
@@ -86,6 +86,15 @@
       "options": {
         "jestConfig": "apps/mapview/jest.config.ts",
         "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "angular-cli-ghpages:deploy",
+      "options": {
+        "baseHref": "/laamap/",
+        "name": "Viktor Jóba",
+        "email": "jobes666@gmail.com",
+        "cname": ""
       }
     }
   },

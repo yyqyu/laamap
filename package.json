@@ -33,6 +33,7 @@
     "@ngrx/store": "^14.3.2",
     "@ngrx/store-devtools": "^14.3.2",
     "@nrwl/angular": "14.7.17",
+    "angular-cli-ghpages": "^1.0.3",
     "lightgallery": "^2.7.0",
     "maplibre-gl": "^2.4.0",
     "messageformat": "^2.3.0",
