@@ -6,7 +6,7 @@ import {
   IAirport,
   IAirportResponse,
   IRunway,
-} from './airport';
+} from './airport.interfaces.';
 
 @Injectable({
   providedIn: 'root',
