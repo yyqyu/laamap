@@ -95,7 +95,8 @@
         "baseHref": "/laamap/",
         "name": "Viktor Jóba",
         "email": "jobes666@gmail.com",
-        "cname": ""
+        "cname": "",
+        "no-silent": true
       }
     }
   },
