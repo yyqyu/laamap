@@ -5,6 +5,7 @@ import {
   Component,
   Host,
   Inject,
+  Optional,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MapComponent } from '@maplibre/ngx-maplibre-gl';
@@ -32,18 +33,22 @@ export class OnMapAirportComponent {
     private readonly cdr: ChangeDetectorRef,
     private readonly openApi: OpenAipService,
     private readonly dialog: MatDialog,
-    @Host() private readonly map: MapComponent,
-    @Inject(APP_BASE_HREF) private readonly baseHref: string
+    @Inject(APP_BASE_HREF) private readonly baseHref: string,
+    @Optional() @Host() private readonly map?: MapComponent
   ) {
     this.loadAirportImages();
   }
 
   hover(): void {
-    this.map.mapInstance.getCanvasContainer().style.cursor = 'pointer';
+    if (this.map) {
+      this.map.mapInstance.getCanvasContainer().style.cursor = 'pointer';
+    }
   }
 
   hoverEnd(): void {
-    this.map.mapInstance.getCanvasContainer().style.cursor = '';
+    if (this.map) {
+      this.map.mapInstance.getCanvasContainer().style.cursor = '';
+    }
   }
 
   airportClicked(airPortDef?: import('geojson').GeoJsonProperties): void {
@@ -136,7 +141,9 @@ export class OnMapAirportComponent {
     const img = new Image();
     const event = fromEvent(img, 'load').pipe(
       tap(() => {
-        this.map.mapInstance.addImage(name, img);
+        if (this.map) {
+          this.map.mapInstance.addImage(name, img);
+        }
       }),
       map(() => true as const),
       take(1)

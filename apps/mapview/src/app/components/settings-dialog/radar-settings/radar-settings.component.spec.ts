@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { RadarSettingsComponent } from './radar-settings.component';
 
@@ -8,9 +9,9 @@ describe('RadarSettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RadarSettingsComponent ]
-    })
-    .compileComponents();
+      declarations: [RadarSettingsComponent],
+      providers: [provideMockStore({})],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RadarSettingsComponent);
     component = fixture.componentInstance;
