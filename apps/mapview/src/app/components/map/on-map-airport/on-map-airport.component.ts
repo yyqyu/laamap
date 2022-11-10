@@ -1,8 +1,11 @@
+import { APP_BASE_HREF } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Host,
+  Inject,
+  Optional,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MapComponent } from '@maplibre/ngx-maplibre-gl';
@@ -30,17 +33,22 @@ export class OnMapAirportComponent {
     private readonly cdr: ChangeDetectorRef,
     private readonly openApi: OpenAipService,
     private readonly dialog: MatDialog,
-    @Host() private readonly map: MapComponent
+    @Inject(APP_BASE_HREF) private readonly baseHref: string,
+    @Optional() @Host() private readonly map?: MapComponent
   ) {
     this.loadAirportImages();
   }
 
   hover(): void {
-    this.map.mapInstance.getCanvasContainer().style.cursor = 'pointer';
+    if (this.map) {
+      this.map.mapInstance.getCanvasContainer().style.cursor = 'pointer';
+    }
   }
 
   hoverEnd(): void {
-    this.map.mapInstance.getCanvasContainer().style.cursor = '';
+    if (this.map) {
+      this.map.mapInstance.getCanvasContainer().style.cursor = '';
+    }
   }
 
   airportClicked(airPortDef?: import('geojson').GeoJsonProperties): void {
@@ -93,35 +101,35 @@ export class OnMapAirportComponent {
     forkJoin([
       this.loadMapImages(
         'runway-paved',
-        'assets/open-aip-images/runway_paved-small.svg'
+        this.baseHref + '/assets/open-aip-images/runway_paved-small.svg'
       ),
       this.loadMapImages(
         'runway-unpaved',
-        'assets/open-aip-images/runway_unpaved-small.svg'
+        this.baseHref + '/assets/open-aip-images/runway_unpaved-small.svg'
       ),
       this.loadMapImages(
         'ULTRA_LIGHT_FLYING_SITE', // ULTRA_LIGHT_FLYING_SITE
-        'assets/open-aip-images/light_aircraft-small.svg'
+        this.baseHref + '/assets/open-aip-images/light_aircraft-small.svg'
       ),
       this.loadMapImages(
         'AIRFIELD_CIVIL', // AIRFIELD_CIVIL
-        'assets/open-aip-images/af_civil-small.svg'
+        this.baseHref + '/assets/open-aip-images/af_civil-small.svg'
       ),
       this.loadMapImages(
         'INTERNATIONAL_AIRPORT', // INTERNATIONAL_AIRPORT
-        'assets/open-aip-images/apt-small.svg'
+        this.baseHref + '/assets/open-aip-images/apt-small.svg'
       ),
       this.loadMapImages(
         'MILITARY_AERODROME', // MILITARY_AERODROME
-        'assets/open-aip-images/ad_mil-small.svg'
+        this.baseHref + '/assets/open-aip-images/ad_mil-small.svg'
       ),
       this.loadMapImages(
         'AERODROME_CLOSED', // AERODROME_CLOSED
-        'assets/open-aip-images/ad_closed-small.svg'
+        this.baseHref + '/assets/open-aip-images/ad_closed-small.svg'
       ),
       this.loadMapImages(
         'HELIPORT_CIVIL', // HELIPORT_CIVIL
-        'assets/open-aip-images/heli_civil-small.svg'
+        this.baseHref + '/assets/open-aip-images/heli_civil-small.svg'
       ),
     ]).subscribe(() => {
       this.imageLoaded = true;
@@ -133,7 +141,9 @@ export class OnMapAirportComponent {
     const img = new Image();
     const event = fromEvent(img, 'load').pipe(
       tap(() => {
-        this.map.mapInstance.addImage(name, img);
+        if (this.map) {
+          this.map.mapInstance.addImage(name, img);
+        }
       }),
       map(() => true as const),
       take(1)

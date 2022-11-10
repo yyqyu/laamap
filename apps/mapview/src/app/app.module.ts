@@ -38,6 +38,7 @@ import { TranslocoMessageFormatModule } from '@ngneat/transloco-messageformat';
 import { AltitudePipe } from './shared/altitude/altitude.pipe';
 import { LightgalleryModule } from 'lightgallery/angular';
 import { DimensionPipe } from './shared/dimension/dimension.pipe';
+import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,14 @@ import { DimensionPipe } from './shared/dimension/dimension.pipe';
     }),
     LightgalleryModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_BASE_HREF,
+      useFactory: (platformLocation: PlatformLocation) =>
+        platformLocation.getBaseHrefFromDOM(),
+      deps: [PlatformLocation],
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
