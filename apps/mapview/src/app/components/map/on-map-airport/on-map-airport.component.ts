@@ -101,35 +101,35 @@ export class OnMapAirportComponent {
     forkJoin([
       this.loadMapImages(
         'runway-paved',
-        this.baseHref + '/assets/open-aip-images/runway_paved-small.svg'
+        this.baseHref + 'assets/open-aip-images/runway_paved-small.svg'
       ),
       this.loadMapImages(
         'runway-unpaved',
-        this.baseHref + '/assets/open-aip-images/runway_unpaved-small.svg'
+        this.baseHref + 'assets/open-aip-images/runway_unpaved-small.svg'
       ),
       this.loadMapImages(
         'ULTRA_LIGHT_FLYING_SITE', // ULTRA_LIGHT_FLYING_SITE
-        this.baseHref + '/assets/open-aip-images/light_aircraft-small.svg'
+        this.baseHref + 'assets/open-aip-images/light_aircraft-small.svg'
       ),
       this.loadMapImages(
         'AIRFIELD_CIVIL', // AIRFIELD_CIVIL
-        this.baseHref + '/assets/open-aip-images/af_civil-small.svg'
+        this.baseHref + 'assets/open-aip-images/af_civil-small.svg'
       ),
       this.loadMapImages(
         'INTERNATIONAL_AIRPORT', // INTERNATIONAL_AIRPORT
-        this.baseHref + '/assets/open-aip-images/apt-small.svg'
+        this.baseHref + 'assets/open-aip-images/apt-small.svg'
       ),
       this.loadMapImages(
         'MILITARY_AERODROME', // MILITARY_AERODROME
-        this.baseHref + '/assets/open-aip-images/ad_mil-small.svg'
+        this.baseHref + 'assets/open-aip-images/ad_mil-small.svg'
       ),
       this.loadMapImages(
         'AERODROME_CLOSED', // AERODROME_CLOSED
-        this.baseHref + '/assets/open-aip-images/ad_closed-small.svg'
+        this.baseHref + 'assets/open-aip-images/ad_closed-small.svg'
       ),
       this.loadMapImages(
         'HELIPORT_CIVIL', // HELIPORT_CIVIL
-        this.baseHref + '/assets/open-aip-images/heli_civil-small.svg'
+        this.baseHref + 'assets/open-aip-images/heli_civil-small.svg'
       ),
     ]).subscribe(() => {
       this.imageLoaded = true;

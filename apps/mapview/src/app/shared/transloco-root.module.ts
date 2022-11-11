@@ -20,7 +20,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
 
   getTranslation(lang: string) {
     return this.http.get<Translation>(
-      `${this.baseHref}/assets/i18n/${lang}.json`
+      `${this.baseHref}assets/i18n/${lang}.json`
     );
   }
 }
