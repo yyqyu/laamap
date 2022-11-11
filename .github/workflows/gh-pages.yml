@@ -17,8 +17,8 @@ jobs:
         run: npx nx build mapview
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
-         with:
-           path: “dist/apps/mapview”
+        with:
+          path: “dist/apps/mapview”
   deploy:
     environment:
       name: github-pages
