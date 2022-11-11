@@ -113,4 +113,8 @@ import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    console.log('version 0.0.1');
+  }
+}
