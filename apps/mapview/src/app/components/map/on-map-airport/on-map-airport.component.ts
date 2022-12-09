@@ -14,7 +14,7 @@ import { forkJoin, fromEvent, map, Observable, take, tap } from 'rxjs';
 import {
   EAirportType,
   IAirportResponse,
-} from '../../../services/open-aip/airport.interfaces.';
+} from '../../../services/open-aip/airport.interfaces';
 import { OpenAipService } from '../../../services/open-aip/open-aip.service';
 import { AirportDialogComponent } from '../../airport-dialog/airport-dialog.component';
 

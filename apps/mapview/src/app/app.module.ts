@@ -39,6 +39,7 @@ import { AltitudePipe } from './shared/altitude/altitude.pipe';
 import { LightgalleryModule } from 'lightgallery/angular';
 import { DimensionPipe } from './shared/dimension/dimension.pipe';
 import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
+import { OnMapAirSpacesComponent } from './components/map/on-map-air-spaces/on-map-air-spaces.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
     AirportDialogComponent,
     AltitudePipe,
     DimensionPipe,
+    OnMapAirSpacesComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,8 +115,4 @@ import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor() {
-    console.log('version 0.0.1');
-  }
-}
+export class AppModule {}

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IAirport } from '../../services/open-aip/airport.interfaces.';
+import { IAirport } from '../../services/open-aip/airport.interfaces';
 import lgZoom from 'lightgallery/plugins/zoom'
 
 @Component({
