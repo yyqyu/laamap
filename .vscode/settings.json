@@ -4,10 +4,12 @@
         "laamap",
         "maplibre",
         "maplibregl",
+        "Notam",
         "transloco"
     ],
     "conventionalCommits.scopes": [
         "radar",
-        "airports"
+        "airports",
+        "airfields"
     ]
 }

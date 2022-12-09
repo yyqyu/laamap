@@ -2,17 +2,44 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, share } from 'rxjs';
 import {
+  EHeightUnit,
+  EReferenceDatum,
   ERunwayComposition,
   IAirport,
   IAirportResponse,
   IRunway,
-} from './airport.interfaces.';
+} from './airport.interfaces';
+import { IAirspace, IAirspaceResponse } from './airspacesinterfaces';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OpenAipService {
   constructor(private readonly http: HttpClient) {}
+
+  getAirSPaces$(): Observable<{ features: { properties: IAirspace }[] }> {
+    return this.http
+      .get<{ features: { properties: IAirspaceResponse }[] }>(
+        'assets/open-aip-db/sk_asp.geojson'
+      )
+      .pipe(
+        map((json) => ({
+          ...json,
+          features: json.features.map((feature) => ({
+            ...feature,
+            properties: {
+              ...feature.properties,
+              lowerLimitMetersMsl: this.toMslMeters(
+                feature.properties.lowerLimit
+              ),
+              upperLimitMetersMsl: this.toMslMeters(
+                feature.properties.upperLimit
+              ),
+            },
+          })),
+        }))
+      );
+  }
 
   getAirports$(): Observable<{ features: { properties: IAirport }[] }> {
     return this.http
@@ -57,5 +84,22 @@ export class OpenAipService {
         runway.surface.mainComposite in
         [ERunwayComposition.ASPHALT, ERunwayComposition.CONCRETE],
     };
+  }
+
+  private toMslMeters(value: {
+    value: number;
+    unit: EHeightUnit;
+    referenceDatum: EReferenceDatum;
+  }): number {
+    if(value.referenceDatum === EReferenceDatum.GND && value.value !== 0) {
+      console.warn(`Can not convert ${value.value} GND to MSL`);
+    }
+    const toMCoefficient =
+      value.unit === EHeightUnit.FEET
+        ? 0.3048
+        : value.unit === EHeightUnit.FLIGHT_LEVEL
+        ? 30.48
+        : 1;
+    return value.value * toMCoefficient;
   }
 }
