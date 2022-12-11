@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Feature, GeoJsonProperties, Geometry } from 'geojson';
 import {
   ColorSpecification,
   DataDrivenPropertyValueSpecification,
@@ -7,8 +9,13 @@ import {
   FillLayerSpecification,
 } from 'maplibre-gl';
 import { BehaviorSubject, map } from 'rxjs';
-import { EAirSpaceType } from '../../../services/open-aip/airspacesinterfaces';
+import { MapHelperFunctionsService } from '../../../services/map-helper-functions/map-helper-functions.service';
+import {
+  EAirSpaceType,
+  IAirspace,
+} from '../../../services/open-aip/airspaces.interfaces';
 import { OpenAipService } from '../../../services/open-aip/open-aip.service';
+import { AirspacesDialogComponent } from '../../airspaces-dialog/airspaces-dialog.component';
 
 type IAirSpaceSettings = {
   [key in EAirSpaceType]?: { filterIn: boolean; color: string };
@@ -53,24 +60,34 @@ export class OnMapAirSpacesComponent {
     [EAirSpaceType.CTA]: { filterIn: true, color: 'grey' },
     [EAirSpaceType.ACC]: { filterIn: true, color: 'grey' },
     [EAirSpaceType.SPORT]: { filterIn: true, color: 'grey' },
-    [EAirSpaceType.LOW_OVERFLIGHT_RESTRICTION]: { filterIn: true, color: 'grey' },
+    [EAirSpaceType.LOW_OVERFLIGHT_RESTRICTION]: {
+      filterIn: true,
+      color: 'grey',
+    },
   });
   filter$ = this.settings$.pipe(map((settings) => this.toFilter(settings)));
   paint3D$ = this.settings$.pipe(map((settings) => this.toPaint3D(settings)));
   paint2D$ = this.settings$.pipe(map((settings) => this.toPaint2D(settings)));
 
-  constructor(private readonly openApi: OpenAipService) {}
+  constructor(
+    private readonly openApi: OpenAipService,
+    private readonly dialog: MatDialog,
+    private readonly mapHelper: MapHelperFunctionsService
+  ) {}
 
-  airspaceClicked(event: any): void {
-    console.log(
-      'layer',
-      event.features.map((x: any) => ({
-        name: x.properties.name,
-        U: x.properties.upperLimitMetersMsl,
-        L: x.properties.lowerLimitMetersMsl,
-      })),
-      event.features
+  airspaceClicked(event: {
+    features?: Feature<Geometry, GeoJsonProperties>[] | undefined;
+  }): void {
+    const airspaces = event.features?.map(
+      (feature) =>
+        this.mapHelper.decodeGeoJsonProperties(feature.properties) as IAirspace
     );
+
+    this.dialog.open(AirspacesDialogComponent, {
+      width: '100%',
+      data: airspaces,
+      id: 'airspaceDialog',
+    });
   }
 
   private toFilter(value: IAirSpaceSettings): ExpressionFilterSpecification {

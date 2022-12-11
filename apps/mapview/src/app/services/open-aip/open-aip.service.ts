@@ -9,7 +9,7 @@ import {
   IAirportResponse,
   IRunway,
 } from './airport.interfaces';
-import { IAirspace, IAirspaceResponse } from './airspacesinterfaces';
+import { IAirspace, IAirspaceResponse } from './airspaces.interfaces';
 
 @Injectable({
   providedIn: 'root',
