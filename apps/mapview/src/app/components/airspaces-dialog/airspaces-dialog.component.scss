@@ -1,0 +1,54 @@
+.info {
+  .label {
+    display: block;
+    color: grey;
+    font-size: 0.8rem;
+    &::after {
+      content: ': ';
+    }
+  }
+
+  .value {
+    margin-left: 0.5rem;
+    .splitList {
+      &:not(:first-child) {
+        &::before {
+          content: ', ';
+        }
+      }
+    }
+  }
+}
+
+mat-accordion {
+  display: block;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+mat-panel-title {
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -moz-box-orient: vertical;
+  -webkit-box-orient: vertical;
+  display: -moz-box;
+  display: -webkit-box;
+}
+
+mat-panel-description {
+  display: none;
+}
+
+@media screen and (min-width: 500px) {
+  .info {
+    .label {
+      display: inline;
+    }
+    .value {
+      margin-left: 0;
+    }
+  }
+  mat-panel-description {
+    display: block;
+  }
+}

@@ -5,12 +5,12 @@ import {
   Component,
   Host,
   Inject,
-  Optional,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MapComponent } from '@maplibre/ngx-maplibre-gl';
 import { ExpressionFilterSpecification } from 'maplibre-gl';
-import { forkJoin, fromEvent, map, Observable, take, tap } from 'rxjs';
+import { forkJoin } from 'rxjs';
+import { MapHelperFunctionsService } from '../../../services/map-helper-functions/map-helper-functions.service';
 import {
   EAirportType,
   IAirportResponse,
@@ -27,14 +27,15 @@ import { AirportDialogComponent } from '../../airport-dialog/airport-dialog.comp
 export class OnMapAirportComponent {
   airPorts$ = this.openApi.getAirports$();
   EAirportType = EAirportType;
-
   imageLoaded = false;
+
   constructor(
     private readonly cdr: ChangeDetectorRef,
     private readonly openApi: OpenAipService,
     private readonly dialog: MatDialog,
+    private readonly mapHelper: MapHelperFunctionsService,
     @Inject(APP_BASE_HREF) private readonly baseHref: string,
-    @Optional() @Host() private readonly map?: MapComponent
+    @Host() private readonly map: MapComponent
   ) {
     this.loadAirportImages();
   }
@@ -52,8 +53,9 @@ export class OnMapAirportComponent {
   }
 
   airportClicked(airPortDef?: import('geojson').GeoJsonProperties): void {
+    this.dialog.getDialogById('airspaceDialog')?.close();
     if (airPortDef) {
-      const airPort = this.decodeGeoJsonProperties(
+      const airPort = this.mapHelper.decodeGeoJsonProperties(
         airPortDef
       ) as IAirportResponse;
 
@@ -78,56 +80,45 @@ export class OnMapAirportComponent {
     ];
   }
 
-  private decodeGeoJsonProperties(
-    data: import('geojson').GeoJsonProperties
-  ): object | null {
-    if (data) {
-      return Object.entries(data)
-        .map(([key, value]) =>
-          typeof value === 'string' &&
-          (value.startsWith('[') || value.startsWith('{'))
-            ? ([key, JSON.parse(value)] as const)
-            : ([key, value] as const)
-        )
-        .reduce(
-          (acc, [key, value]) => ({ ...acc, [key]: value }),
-          {} as object
-        );
-    }
-    return data;
-  }
-
   private loadAirportImages(): void {
     forkJoin([
-      this.loadMapImages(
+      this.mapHelper.loadImageToMap(
+        this.map,
         'runway-paved',
         this.baseHref + 'assets/open-aip-images/runway_paved-small.svg'
       ),
-      this.loadMapImages(
+      this.mapHelper.loadImageToMap(
+        this.map,
         'runway-unpaved',
         this.baseHref + 'assets/open-aip-images/runway_unpaved-small.svg'
       ),
-      this.loadMapImages(
+      this.mapHelper.loadImageToMap(
+        this.map,
         'ULTRA_LIGHT_FLYING_SITE', // ULTRA_LIGHT_FLYING_SITE
         this.baseHref + 'assets/open-aip-images/light_aircraft-small.svg'
       ),
-      this.loadMapImages(
+      this.mapHelper.loadImageToMap(
+        this.map,
         'AIRFIELD_CIVIL', // AIRFIELD_CIVIL
         this.baseHref + 'assets/open-aip-images/af_civil-small.svg'
       ),
-      this.loadMapImages(
+      this.mapHelper.loadImageToMap(
+        this.map,
         'INTERNATIONAL_AIRPORT', // INTERNATIONAL_AIRPORT
         this.baseHref + 'assets/open-aip-images/apt-small.svg'
       ),
-      this.loadMapImages(
+      this.mapHelper.loadImageToMap(
+        this.map,
         'MILITARY_AERODROME', // MILITARY_AERODROME
         this.baseHref + 'assets/open-aip-images/ad_mil-small.svg'
       ),
-      this.loadMapImages(
+      this.mapHelper.loadImageToMap(
+        this.map,
         'AERODROME_CLOSED', // AERODROME_CLOSED
         this.baseHref + 'assets/open-aip-images/ad_closed-small.svg'
       ),
-      this.loadMapImages(
+      this.mapHelper.loadImageToMap(
+        this.map,
         'HELIPORT_CIVIL', // HELIPORT_CIVIL
         this.baseHref + 'assets/open-aip-images/heli_civil-small.svg'
       ),
@@ -135,20 +126,5 @@ export class OnMapAirportComponent {
       this.imageLoaded = true;
       this.cdr.detectChanges();
     });
-  }
-
-  private loadMapImages(name: string, url: string): Observable<true> {
-    const img = new Image();
-    const event = fromEvent(img, 'load').pipe(
-      tap(() => {
-        if (this.map) {
-          this.map.mapInstance.addImage(name, img);
-        }
-      }),
-      map(() => true as const),
-      take(1)
-    );
-    img.src = url;
-    return event;
   }
 }

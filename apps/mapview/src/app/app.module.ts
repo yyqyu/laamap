@@ -40,6 +40,7 @@ import { LightgalleryModule } from 'lightgallery/angular';
 import { DimensionPipe } from './shared/dimension/dimension.pipe';
 import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 import { OnMapAirSpacesComponent } from './components/map/on-map-air-spaces/on-map-air-spaces.component';
+import { AirspacesDialogComponent } from './components/airspaces-dialog/airspaces-dialog.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { OnMapAirSpacesComponent } from './components/map/on-map-air-spaces/on-m
     AltitudePipe,
     DimensionPipe,
     OnMapAirSpacesComponent,
+    AirspacesDialogComponent,
   ],
   imports: [
     BrowserModule,

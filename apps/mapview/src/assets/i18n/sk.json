@@ -116,13 +116,119 @@
       }
     }
   },
+  "airspaceDialog": {
+    "title": "Letecké priestory",
+    "close": "Zavrieť",
+    "name": "Názov",
+    "icaoClass": "Trieda",
+    "lowerLimit": "Spodná hranica",
+    "upperLimit": "Horná hranica",
+    "type": "Typ",
+    "activity": "Aktivita",
+    "byNotam": "Aktivácia cez notam",
+    "onDemand": "Na dopyt",
+    "onRequest": "Na žiadosť",
+    "requestCompliance": "Žiadosť o súlad",
+    "specialAgreement": "Špeciálny súhlas",
+    "class": {
+      "0": "A",
+      "1": "B",
+      "2": "C",
+      "3": "D",
+      "4": "E",
+      "5": "F",
+      "6": "G",
+      "7": "Špeciálna",
+      "8": "Iná"
+    },
+    "types": {
+      "0": "Iný",
+      "1": "Obmedzený",
+      "2": "Nebezpečný",
+      "3": "Zakázaný",
+      "4": "CTR",
+      "5": "TMZ",
+      "6": "RMZ",
+      "7": "TMA",
+      "8": "TRA",
+      "9": "TSA",
+      "10": "FIR",
+      "11": "UIR",
+      "12": "ADIZ",
+      "13": "ATZ",
+      "14": "MATZ",
+      "15": "Letecká cesta",
+      "16": "MTR",
+      "17": "Oblasť upozornenia",
+      "18": "Oblasť varovanie",
+      "19": "chránený",
+      "20": "HTZ",
+      "21": "Klzáky",
+      "22": "TRP",
+      "23": "TIZ",
+      "24": "TIA",
+      "25": "MTA",
+      "26": "CTA",
+      "27": "ACC Sektor",
+      "28": "Šport",
+      "29": "Zákaz nízkeho preletu"
+    },
+    "typesLong": {
+      "0": " ",
+      "1": " ",
+      "2": " ",
+      "3": " ",
+      "4": "Controlled Tower Region",
+      "5": "Transponder Mandatory Zone",
+      "6": "Radio Mandatory Zone",
+      "7": "Terminal Maneuvering Area",
+      "8": "Temporary Reserved Area",
+      "9": "Temporary Segregated Area",
+      "10": "Flight Information Region",
+      "11": "Upper Flight Information Region",
+      "12": "Air Defense Identification Zone",
+      "13": "Airport Traffic Zone",
+      "14": " Military Airport Traffic Zone",
+      "15": " ",
+      "16": " Military Training Route",
+      "17": " ",
+      "18": " ",
+      "19": " ",
+      "20": "Helicopter Traffic Zone",
+      "21": " ",
+      "22": "Transponder Setting",
+      "23": "Traffic Information Zone",
+      "24": "Traffic Information Area",
+      "25": "Military Training Area",
+      "26": "Controlled Area",
+      "27": "Area control center",
+      "28": " ",
+      "29": " "
+    },
+    "activities": {
+      "0": "Žiadna",
+      "1": "Parašutista",
+      "2": "Letecká akrobacia",
+      "3": "Aero klub",
+      "4": "Ultralight",
+      "5": "Paragliding/Rogalo"
+    },
+    "boolean": {
+      "false": "Nie",
+      "true": "Ano"
+    }
+  },
   "shared": {
     "altitude": {
       "heighUnit": {
-        "0": "m"
+        "0": "m",
+        "1": "ft",
+        "6": " "
       },
       "referenceDatum": {
-        "1": "n.m."
+        "0": "gnd",
+        "1": "n.m.",
+        "2": "FL"
       }
     }
   }
