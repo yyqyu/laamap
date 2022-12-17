@@ -36,13 +36,15 @@ export class MapComponent {
   }
 
   private async requestCompassPermission(): Promise<boolean> {
-    navigator.permissions.query({ name: 'screen-wake-lock' });
     const results = await Promise.all([
-      navigator.permissions.query({ name: 'accelerometer' as never }),
-      navigator.permissions.query({ name: 'magnetometer' as never }),
-      navigator.permissions.query({ name: 'gyroscope' as never }),
+      navigator.permissions?.query({ name: 'accelerometer' as never }),
+      navigator.permissions?.query({ name: 'magnetometer' as never }),
+      navigator.permissions?.query({ name: 'gyroscope' as never }),
     ]);
-    return results.every((result) => result.state === 'granted');
+    const result = results.every((result) =>
+      result ? result.state === 'granted' : true
+    );
+    return result;
   }
 
   private setupCompass(): { start: () => void } | undefined {
