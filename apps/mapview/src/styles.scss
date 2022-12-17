@@ -3,6 +3,11 @@
 @import '~lightgallery/scss/lightgallery';
 @import '~lightgallery/scss/lg-zoom';
 
+:root {
+  --bearing: 0; // map rotation
+  --heading: 0; // device rotation to magnetic north
+}
+
 body,
 html {
   all: initial;
@@ -13,4 +18,23 @@ html {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.maplibregl-user-location-dot {
+  background: none;
+  width: 2rem;
+  height: 2rem;
+  &:after,
+  &:before {
+    all: initial;
+  }
+  &:after {
+    content: '';
+    width: inherit;
+    height: inherit;
+    background: url('./assets/mapCursor.svg');
+    background-size: cover;
+    transform: rotateZ(calc(calc(var(--bearing) - var(--heading)) * -1deg));
+    display: block;
+  }
 }
