@@ -5,6 +5,7 @@ import {
   Component,
   Host,
   Inject,
+  Optional,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MapComponent } from '@maplibre/ngx-maplibre-gl';
@@ -35,7 +36,7 @@ export class OnMapAirportComponent {
     private readonly dialog: MatDialog,
     private readonly mapHelper: MapHelperFunctionsService,
     @Inject(APP_BASE_HREF) private readonly baseHref: string,
-    @Host() private readonly map: MapComponent
+    @Optional() @Host() private readonly map?: MapComponent
   ) {
     this.loadAirportImages();
   }
@@ -81,6 +82,9 @@ export class OnMapAirportComponent {
   }
 
   private loadAirportImages(): void {
+    if (!this.map) {
+      return;
+    }
     forkJoin([
       this.mapHelper.loadImageToMap(
         this.map,
