@@ -1,15 +1,11 @@
 {
-    "cSpell.words": [
-        "Geolocate",
-        "laamap",
-        "maplibre",
-        "maplibregl",
-        "Notam",
-        "transloco"
-    ],
-    "conventionalCommits.scopes": [
-        "radar",
-        "airports",
-        "airfields"
-    ]
+  "cSpell.words": [
+    "Geolocate",
+    "laamap",
+    "maplibre",
+    "maplibregl",
+    "Notam",
+    "transloco"
+  ],
+  "conventionalCommits.scopes": ["radar", "airports", "airfields"]
 }
