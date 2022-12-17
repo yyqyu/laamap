@@ -1,4 +1,4 @@
-import { ECountries } from "./country.interface";
+import { ECountries } from './country.interface';
 
 export enum EAirportType {
   AIRPORT = 0, // civil/military
@@ -20,7 +20,7 @@ export enum EAirportType {
 export enum EHeightUnit {
   METERS = 0,
   FEET = 1,
-  FLIGHT_LEVEL = 6
+  FLIGHT_LEVEL = 6,
 }
 
 enum EFrequencyUnit {
@@ -34,7 +34,7 @@ enum EWeightUnit {
 export enum EReferenceDatum {
   GND = 0,
   MSL = 1,
-  STD = 2
+  STD = 2,
 }
 
 enum ETrafficType {

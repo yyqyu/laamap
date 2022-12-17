@@ -91,7 +91,7 @@ export class OpenAipService {
     unit: EHeightUnit;
     referenceDatum: EReferenceDatum;
   }): number {
-    if(value.referenceDatum === EReferenceDatum.GND && value.value !== 0) {
+    if (value.referenceDatum === EReferenceDatum.GND && value.value !== 0) {
       console.warn(`Can not convert ${value.value} GND to MSL`);
     }
     const toMCoefficient =
