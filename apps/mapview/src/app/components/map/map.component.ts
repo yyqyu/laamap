@@ -49,7 +49,9 @@ export class MapComponent {
 
   private setupCompass(): { start: () => void } | undefined {
     if (`AbsoluteOrientationSensor` in window) {
-      const sensor = new AbsoluteOrientationSensor();
+      const sensor = new AbsoluteOrientationSensor({
+        referenceFrame: 'screen',
+      });
       sensor.addEventListener(
         'reading',
         (e: { target: { quaternion: number[] } }) => {
@@ -61,31 +63,7 @@ export class MapComponent {
             ) *
             (-180 / Math.PI);
 
-          switch (screen.orientation.type) {
-            case 'landscape-primary':
-              document.documentElement.style.setProperty(
-                '--heading',
-                `${heading}`
-              );
-              break;
-            case 'landscape-secondary':
-              document.documentElement.style.setProperty(
-                '--heading',
-                `${heading + 180}`
-              );
-              break;
-            case 'portrait-primary':
-              document.documentElement.style.setProperty(
-                '--heading',
-                `${heading - 90}`
-              );
-              break;
-            case 'portrait-secondary':
-              document.documentElement.style.setProperty(
-                '--heading',
-                `${heading + 90}`
-              );
-          }
+          document.documentElement.style.setProperty('--heading', `${heading}`);
         }
       );
       return sensor;
