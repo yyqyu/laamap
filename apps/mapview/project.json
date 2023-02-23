@@ -102,8 +102,8 @@
       "executor": "angular-cli-ghpages:deploy",
       "options": {
         "baseHref": "/laamap/",
-        "name": "Viktor Jóba",
-        "email": "jobes666@gmail.com",
+        "name": "Darren",
+        "email": "",
         "cname": "",
         "no-silent": true
       }
