@@ -31,8 +31,8 @@ export class MapService {
     this.instance = new Map({
       container: 'map',
       style: this.tileStyleUrl,
-      center: [19.471558112191815, 48.704923970323705],
-      zoom: 7,
+      center: [115, 40],
+      zoom: 2,
       attributionControl: false,
       maxPitch: 85,
     });
