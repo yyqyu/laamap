@@ -51,7 +51,7 @@ export class OpenAipService {
   getAirports$(): GetAirportsResponse {
     return this.http
       .get<GeoJSON.FeatureCollection<GeoJSON.Geometry, IAirportResponse>>(
-        'assets/open-aip-db/ab_apt.geojson' 
+        'assets/open-aip-db/ww_apt.geojson' 
       )
       .pipe(
         map((json) => ({
